@@ -20,7 +20,7 @@ class Network(nn.Module):
         self, 
         input_size: int, 
         output_size: int, 
-        hidden_layers: int, 
+        hidden_layers: list[int], 
         drop_p: float =0.5
     ) -> None:
         super().__init__()
@@ -47,7 +47,7 @@ class Network(nn.Module):
 
 def validation(
     model: nn.Module, 
-    testloader: torch.utils.data.Dataloader, 
+    testloader: torch.utils.data.DataLoader, 
     criterion: Callable | nn.Module,
 ) -> tuple[float, float]: 
     """Validation pass through the dataset."""
@@ -72,8 +72,8 @@ def validation(
 
 def train(
 model: nn.Module, 
-trainloader: torch.utils.data.Dataloader, 
-testloader: torch.utils.data.Dataloader, 
+trainloader: torch.utils.data.DataLoader, 
+testloader: torch.utils.data.DataLoader, 
 criterion: Callable | nn.Module, 
 optimizer: None | torch.optim.Optimizer =None, 
 epochs: int =5, 
