@@ -49,7 +49,7 @@ def validation(
     model: nn.Module, 
     testloader: torch.utils.data.Dataloader, 
     criterion: Callable | nn.Module,
-): -> tuple[float, float]: 
+) -> tuple[float, float]: 
     """Validation pass through the dataset."""
     accuracy = 0
     test_loss = 0
