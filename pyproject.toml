@@ -62,3 +62,4 @@ omit = ["tests/*"]
 
 [project.scripts]
 train = "cookie_cutter_demo.train:main"
+evaluate = "cookie_cutter_demo.evaluate:main"
