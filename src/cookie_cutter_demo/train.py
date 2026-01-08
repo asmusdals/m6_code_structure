@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import torch
 import typer
-from .data import corrupt_mnist # hed før from data import corrupt_mnist
-from .model import MyAwesomeModel # hed før from model import MyAwesomeModel
+import os
+from cookie_cutter_demo.data import corrupt_mnist # hed før from data import corrupt_mnist
+from cookie_cutter_demo.model import MyAwesomeModel # hed før from model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -39,7 +40,12 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
                 print(f"Epoch {epoch}, iter {i}, loss: {loss.item()}")
 
     print("Training complete")
+
+    os.makedirs("models", exist_ok=True)
+    os.makedirs("reports/figures", exist_ok=True)
+
     torch.save(model.state_dict(), "models/model.pth")
+    
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")
@@ -48,8 +54,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     fig.savefig("reports/figures/training_statistics.png")
 
 
-def main() -> None:
-    typer.run(train)
+# def main() -> None:
+#    typer.run(train)
     
 if __name__ == "__main__":
     typer.run(train)
