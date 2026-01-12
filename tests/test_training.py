@@ -22,3 +22,6 @@ def test_training_runs():
         batch_size=64,
         epochs=1,
     )
+
+
+
