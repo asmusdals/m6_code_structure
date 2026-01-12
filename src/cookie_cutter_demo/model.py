@@ -15,6 +15,13 @@ class MyAwesomeModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass."""
+
+        # Custom, user-friendly errors
+        if x.ndim != 4:
+            raise ValueError("Expected input to be a 4D tensor")
+        if x.shape[1:] != (1, 28, 28):
+            raise ValueError("Expected each sample to have shape [1, 28, 28]")
+
         x = torch.relu(self.conv1(x))
         x = torch.max_pool2d(x, 2, 2)
         x = torch.relu(self.conv2(x))

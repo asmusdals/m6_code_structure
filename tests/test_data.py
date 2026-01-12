@@ -1,9 +1,17 @@
 # from torch.utils.data import Dataset
 # from cookie_cutter_demo.data import MyDataset
+import os
+import pytest
 import torch
 from tests import _PATH_DATA
-from src.cookie_cutter_demo.data import corrupt_mnist
+from cookie_cutter_demo.data import corrupt_mnist
 
+# Skipper test hvis data stier ikke er tilgængelige
+DATA_READY = os.path.exists(os.path.join(_PATH_DATA, "processed", "train_images.pt"))
+@pytest.mark.skipif(
+    not DATA_READY,
+    reason="Processed MNIST data files not found"
+)
 
 def test_corrupt_mnist_loads_correctly():
     train_set, test_set = corrupt_mnist(_PATH_DATA + "/processed")
