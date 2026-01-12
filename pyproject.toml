@@ -19,12 +19,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi==0.115.6",
+    "loguru>=0.7.3",
     "matplotlib>=3.10.8",
     "numpy<2",
+    "python-dotenv>=1.2.1",
     "scikit-learn>=1.8.0",
     "torch==2.2.0",
     "typer==0.15.1",
     "uvicorn==0.34.0",
+    "wandb>=0.23.1",
 ]
 
 [dependency-groups]
@@ -53,5 +56,5 @@ lint.select = ["I"]
 omit = ["tests/*"]
 
 [project.scripts]
-train = "cookie_cutter_demo.train:main"
-evaluate = "cookie_cutter_demo.evaluate:main"
+train = "cookie_cutter_demo.train:train"
+evaluate = "cookie_cutter_demo.evaluate:evaluate"
