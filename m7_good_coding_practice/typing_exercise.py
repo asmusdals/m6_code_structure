@@ -16,13 +16,7 @@ class Network(nn.Module):
 
     """
 
-    def __init__(
-        self, 
-        input_size: int, 
-        output_size: int, 
-        hidden_layers: list[int], 
-        drop_p: float =0.5
-    ) -> None:
+    def __init__(self, input_size: int, output_size: int, hidden_layers: list[int], drop_p: float = 0.5) -> None:
         super().__init__()
         # Input to a hidden layer
         self.hidden_layers = nn.ModuleList([nn.Linear(input_size, hidden_layers[0])])
@@ -46,10 +40,10 @@ class Network(nn.Module):
 
 
 def validation(
-    model: nn.Module, 
-    testloader: torch.utils.data.DataLoader, 
+    model: nn.Module,
+    testloader: torch.utils.data.DataLoader,
     criterion: Callable | nn.Module,
-) -> tuple[float, float]: 
+) -> tuple[float, float]:
     """Validation pass through the dataset."""
     accuracy = 0
     test_loss = 0
@@ -71,13 +65,13 @@ def validation(
 
 
 def train(
-model: nn.Module, 
-trainloader: torch.utils.data.DataLoader, 
-testloader: torch.utils.data.DataLoader, 
-criterion: Callable | nn.Module, 
-optimizer: None | torch.optim.Optimizer =None, 
-epochs: int =5, 
-print_every: int =40
+    model: nn.Module,
+    trainloader: torch.utils.data.DataLoader,
+    testloader: torch.utils.data.DataLoader,
+    criterion: Callable | nn.Module,
+    optimizer: None | torch.optim.Optimizer = None,
+    epochs: int = 5,
+    print_every: int = 40,
 ) -> None:
     """Train a PyTorch Model."""
     if optimizer is None:

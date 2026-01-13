@@ -1,4 +1,5 @@
 import sys
+
 from loguru import logger
 
 logger.remove()  # Remove the default logger
@@ -11,4 +12,4 @@ logger.warning("alt virker men der er fejl i noget")
 logger.error("der er fejl i process")
 logger.critical("noget er dybt godnat og terminerer processs")
 
-logger.add("logs/my_log.log",level="DEBUG",rotation="100 MB")
+logger.add("logs/my_log.log", level="DEBUG", rotation="100 MB")

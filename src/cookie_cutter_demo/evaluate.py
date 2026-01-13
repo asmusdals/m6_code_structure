@@ -1,5 +1,6 @@
 import torch
 import typer
+
 from cookie_cutter_demo.data import corrupt_mnist
 from cookie_cutter_demo.model import MyAwesomeModel
 
@@ -26,8 +27,10 @@ def evaluate(model_checkpoint: str) -> None:
         total += target.size(0)
     print(f"Test accuracy: {correct / total}")
 
+
 def main() -> None:
-    typer.run(evaluate)    
+    typer.run(evaluate)
+
 
 if __name__ == "__main__":
     typer.run(evaluate)

@@ -1,11 +1,13 @@
+import os
+
 import matplotlib.pyplot as plt
 import torch
 import typer
-import wandb
-import os
 from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision_score, recall_score
-from cookie_cutter_demo.data import corrupt_mnist # hed før from data import corrupt_mnist
-from cookie_cutter_demo.model import MyAwesomeModel # hed før from model import MyAwesomeModel
+
+import wandb
+from cookie_cutter_demo.data import corrupt_mnist  # hed før from data import corrupt_mnist
+from cookie_cutter_demo.model import MyAwesomeModel  # hed før from model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -92,11 +94,9 @@ def train(lr: float = 0.001, batch_size: int = 32, epochs: int = 5) -> None:
     wandb.finish()
     print("Training complete")
 
+
 if __name__ == "__main__":
     typer.run(train)
-
-
-
 
     # os.makedirs("models", exist_ok=True)
     # os.makedirs("reports/figures", exist_ok=True)
